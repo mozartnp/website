@@ -1,0 +1,91 @@
+<!--Para carregar os arquivos estaticos na pagina.-->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <!--Para ter compatibilidade com internet explore antigo-->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Para moldar dentro de navegadores de mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Titulo-->
+    <title>Aldeia Pedras</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'jquery/css/jquery.fancybox.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/css/all.min.css' %}">
+    <style>
+        .box-produto-img{
+            min-height: 300px;
+            position: relative;
+            margin: 0;
+        }
+        .box-produto-img .overlay{
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(153, 153, 153, 0.3);
+            transition: all 0.3s;
+        }
+        .overlay .texto-info{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-left: 30px;
+            background: rgba(0, 0, 0, 0.55);
+            color: #fff;
+            transition: all 0.3s;  
+        }
+       /** O hover serve para quando passar o mouse encima da imgem da um destaque nela**/
+        .box-produto-img:hover .overlay{
+            background: rgba(153, 153, 153, 0.1);
+        }
+        .box-produto-img:hover .texto-info{
+            background: rgba(0, 0, 0, 0.85);
+        }
+        .form-control{
+            background-color: #fff;
+            margin-bottom: 15px;
+            border: 1px solid #cccccc;
+        }
+        .btn-primary{
+            color: #ffffff;
+            background-color: #f0ad4e;
+            border-color: #eea236;
+        }
+        .btn-primary:hover{
+            color: #ffffff;
+            background-color: #d58512;
+            border-color: #985f0d;
+        }        
+        .caixa{
+            padding-left: 30px;
+        }
+        .rodape, .rodape a{
+            color: #e89b49 !important;
+            margin-bottom: 11px; 
+        }
+        .icon-rodape{
+            font-size: 42px;
+            padding-right: 15px;
+        }
+    </style>    
+    
+</head>
+    <!--A linha abaixo serve para indicar onde no base.html será incluido informações de outros html-->
+    {% block content %} {% endblock %}
+
+    <!-- Scripts -->
+    <script src="{% static 'jquery/js/jquery.min.js' %}"></script>
+    <script src="{% static 'jquery/js/jquery.fancybox.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</html>
+          

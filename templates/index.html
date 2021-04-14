@@ -1,0 +1,227 @@
+<!--Para avisar que a pagina é uma extenção da base.html-->
+{% extends 'base.html' %}
+
+<!--Para carregar os arquivos estaticos na pagina.-->
+{% load static %}
+
+<!--Para indicar qual bloco será inserida no base.html-->
+{% block content %}
+
+<body>
+
+    <header class="sticky-top">
+
+        <div id="top"></div>
+        <div class="container-fluid " style="background-color: #363435; ">
+            <div class="container ">
+            
+                <!--Cabeçalho-->
+                <div class="d-none d-lg-block" >
+                    <div class="row" >
+                        <div class="col-md-5"><img src="{% static 'img/logo-aldeia-pedras.png' %}" class="img-fluid" style="margin-top: 20px; margin-left: 0px"></div> <!--A class img-fluid serve para subistituir a antiga,img-responsive, que dava a responsividade da imagem-->
+                        <div class="col-md-3"></div>
+                        <div class="col-md-4" style="color: #E89B49; margin-top: 20px; padding-right: 15px; padding-left: 15px">
+                            <p style="margin-top: 0; margin-bottom: 0; font-size: 17px;">Interessado?</p>
+                            <p style="margin-top: 0; margin-bottom: 0; font-size: 17px;">Entre em contato conosco também pelas redes sociais ou pelos telefones abaixo:</p>
+                            <p style="font-size: 18px; margin-bottom: 0; font-weight: bold;">+55 (81) 3459.3379 | 9.8356-2165</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Navbar-->
+                <nav class=" navbar navbar-expand-lg navbar-dark ">
+                
+                    <!--Logo no navbar-->
+                    <div class="navbar-brand d-lg-none d-xxl-none">
+                        <a href="#top"> <img src="{% static 'img/logo-aldeia-pedras.png' %}" class="img-fluid"  style="height: 40px;"> </a>
+                    </div>
+                    
+                    <!--Menu sanduiche do navbar-->
+                    <button class="navbar-toggler" style="border-color: rgb(255,255,255);" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <!--Os botões do navbar-->
+                    <div class="collapse navbar-collapse" id="menu">
+                        <div class="nav navbar-nav">
+                            <a class="nav-link" style="color: #e89b49; margin-right: 35px " href="#empresa">Empresa</a>
+                            <a class="nav-link" style="color: #e89b49; margin-right: 35px;" href="#produtos">Produtos</a>
+                            <a class="nav-link" style="color: #e89b49; " href="#contato">Contato</a>
+                        </div>
+                    </div>
+
+                </nav>        
+
+            </div>
+        </div>
+
+    </header>
+    <main>
+         <!-- Carrossel de imagens -->
+         <div id="carrosselImagens" class="teste carousel slide" data-bs-ride='carousel' >
+            <div class ='carousel-indicators'>
+                <button type="button" data-bs-target="#carrosselImagens" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carrosselImagens" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carrosselImagens" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{% static 'img/slider_1.jpg' %}" class="d-block w-100" alt="Slider 1"/>
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'img/slider_2.jpg' %}" class="d-block w-100" alt="Slider 2"/>
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'img/slider_3.jpg' %}" class="d-block w-100" alt="Slider 3"/>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carrosselImagens"  data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>        
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carrosselImagens"  data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Próximo</span>
+            </button>
+        </div>
+
+        <!--Empresa-->
+        <div id="empresa"></div>
+        <div class="container-fluid" style="background-color: rgba(210, 226, 138, 0.74); padding-top: 50px; padding-bottom: 50px">
+            <div class="container text-center">
+                
+                <h1 class="text-uppercase" style="padding-bottom: 10px;">Empresa</h1>
+               
+                <h4 style="font-size: 20px;">
+                    <p >Com mais de 15 anos atuando no mercado, a Aldeia Pedras vem oferecendo a seus clientes qualidade em produtos e serviços com agilidade nos prazos de entrega. Possuímos uma equipe com mão-de-obra especializada, para a execução de diversos projetos, visando atender as necessidades e desejos, desde grandes obras a peças simples e decorativas. </p>
+                    <p >Trabalhamos com diversas Pedras Naturais, Mármores e Granitos em padrões nacionais e importados, preservando sempre nossos preços competitivos. Temos como objetivo satisfazer nossos clientes, trabalhando com seriedade e respeito. </p>
+                </h4>
+
+            </div>
+        </div>  
+
+        <!--Produtos-->
+        <div id="produtos"></div>
+        <div class="container-fluid" style="background-color: rgba(210, 226, 138, 0.48); padding-top: 50px; padding-bottom: 50px">
+            <div class="container" >
+                
+                <h1 class="text-uppercase text-center" style="padding-bottom: 10px;">produtos</h1>
+            
+                <!--HREF eh a referencia para a imagem interna , e o SRC é para imagem externa no DOM-->
+                <div class="row">
+                    <div class="col-sm-4 " style="margin-top: 10px; margin-bottom: 10px;">
+                        <div class="box-produto-img" >
+                            <a data-fancybox="images" href="{% static 'img/02.jpg' %}" data-caption="Testando" >
+                                <img class="img-fluid" src="{% static 'img/02.jpg' %}" style="height: 300px; width: 100%;">
+                                <div class="overlay">
+                                    <div class="texto-info text-uppercase">
+                                        <h4>Material para Manutenção</h4>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 " style="margin-top: 10px; margin-bottom: 10px;">
+                        <div class="box-produto-img" >
+                            <a data-fancybox="images" href="{% static 'img/02.jpg' %}" data-caption="Testando" >
+                                <img class="img-fluid" src="{% static 'img/02.jpg' %}" style="height: 300px; width: 100%;">
+                                <div class="overlay">
+                                    <div class="texto-info text-uppercase">
+                                        <h4>Material para Manutenção</h4>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 " style="margin-top: 10px; margin-bottom: 10px;">
+                        <div class="box-produto-img" >
+                            <a data-fancybox="images" href="{% static 'img/rodape.jpg' %}" data-caption="Testando" >
+                                <img class="img-fluid" src="{% static 'img/rodape.jpg' %}" style="height: 300px; width: 100%;">
+                                <div class="overlay">
+                                    <div class="texto-info text-uppercase">
+                                        <h4>Material para Manutenção</h4>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!--Imagem do rodape-->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 " style="height: 450px; background-image: url('{% static 'img/rodape.jpg' %}'); background-position: center center; background-size: cover;">
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+
+        <!--Encontre-nos-->
+        <div id="contato"></div>
+        <div class="container-fluid " style="background-color: rgba(210, 226, 138, 0.74); padding-top: 15px; padding-left: 0px; padding-right: 0px;">
+            <h1 class="text-uppercase text-center m-0" style="padding-bottom: 25px;">Encontre-nos</h1>
+        </div>  
+        <div style="background-color: rgba(34, 34, 34)">
+            <iframe title="Localização Aldeia Pedras" frameborder="0" height ="350" style="border:0; width: 100%;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2794.0211670752674!2d-35.008898557084486!3d-7.9634988034345024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x8d65c42214626886!2sAldeia+Pedras!5e0!3m2!1spt-BR!2sbr!4v1488156970870" allowfullscreen></iframe>
+        </div>
+
+        <!--Contato-->
+        <div class="container-fluid" style="background-color: rgba(34, 34, 34); padding-top: 50px; padding-bottom: 50px">
+           <div class="container">
+               <div class="row">
+
+                    <!--Formulario-->
+                    <div class="col-md-6" style="background-color: rgb(255, 255, 255);padding-right: 40px; padding-left: 40px; padding-bottom: 40px; padding-top: 30px; margin-top: -100px; margin-left: 10px; margin-right: 10px;">
+                        <form>
+                            <h3 class= "text-center text-uppercase" style="color: #444; margin-bottom: 20px;"><strong>Contato</strong></h3>
+                            <div>
+                                <input type="text" class="form-control" id="formulario-nome" placeholder="Nome">
+                            </div>
+                            <div>
+                                <input type="text" class="form-control" id="formulario-telefone" placeholder="Telefone">
+                            </div>
+                            <div>
+                                <input type="text" class="form-control" id="formulario-email" placeholder="E-mail">
+                            </div>
+                            <div>  
+                                <textarea class="form-control" id="formulario-texto" rows="3" placeholder="Mensagem"></textarea>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary" id="submit">Enviar</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!--Informações-->
+                    <div class="col-md-6 caixa" >
+                        <div class="row rodape" >
+                            <div class="col-lg-12" >
+                                <h5><i class="icon-rodape fas fa-map-marker-alt"></i> Estrada de Aldeia, s/n Km 9,5 - Camaragibe - PE</h5>
+                            </div>
+                        </div>
+                        <div class="row rodape">
+                            <div class="col-lg-12">
+                                <h5><i class="icon-rodape fas fa-phone-alt"></i> +55 (81) <a href="tel:(81)34593379" class="text-decoration-none"> 3459.3379</a> |<a href="tel:(81)983562165" class="text-decoration-none"> 9.8356-2165</a></h5>
+                            </div>
+                        </div>
+                        <div class="row rodape">
+                            <div class="col-lg-12">
+                                <h5><i class="icon-rodape fas fa-envelope"></i> <a href="mailto:aldeiapedras95@gmail.com" class="text-decoration-none">aldeiapedras95@gmail.com</a></h5>
+                            </div>
+                        </div>
+                    </div>
+
+               </div>
+           </div>
+        </div>
+
+    </footer>
+</body>
+
+{% endblock %}
