@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'home',
+    'produtos',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -78,11 +79,11 @@ WSGI_APPLICATION = 'website.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'aldeiapedrassite',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'NAME': 'website',
         'USER': 'root',
         'PASSWORD': 'toor',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
 
