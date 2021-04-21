@@ -1,12 +1,12 @@
 from django.shortcuts import render
-from produtos.models import Iten
+from produtos.models import Categoria
 
 def index(request):
 
-    produtos = Iten.objects.all()
+    categorias = Categoria.objects.all()
 
     dados = {
-        'produtos' : produtos
+        'categorias' : categorias
     }
 
     return render(request,'index.html', dados)

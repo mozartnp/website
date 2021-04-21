@@ -110,15 +110,15 @@
                 <!--HREF eh a referencia para a imagem interna , e o SRC é para imagem externa no DOM-->
                 <div class="row">
 
-                    {% if produtos %}
-                    {% for produto in produtos %}
+                    {% if categorias %}
+                    {% for categoria in categorias %}
                     <div class="col-sm-4 " style="margin-top: 10px; margin-bottom: 10px;">
                         <div class="box-produto-img" >
                             <a data-fancybox="images" href="{% static 'home/img/rodape.jpg' %}" data-caption="Testando" >
                                 <img class="img-fluid" src="{% static 'home/img/rodape.jpg' %}" style="height: 300px; width: 100%;">
                                 <div class="overlay">
                                     <div class="texto-info text-uppercase">
-                                        <h4>{{ produto.categoria }}</h4>
+                                        <h4>{{ categoria.nome_da_categoria }}</h4>
                                     </div>
                                 </div>
                             </a>
