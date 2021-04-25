@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 
 def login(request):
+    
     if request.method =='POST':
         usuario = request.POST['usuario']
         senha = request.POST['senha']
@@ -18,14 +19,6 @@ def login(request):
 
     else:
         return render(request, 'login.html')
-
-def manutencao(request):
-
-    #Verificação de usuario para poder usar ou não a tela de manutencao
-    if request.user.is_authenticated:
-        return render(request, 'manutencao.html')
-    else:
-        return redirect('login')
 
 def logout(request):
     auth.logout(request)
