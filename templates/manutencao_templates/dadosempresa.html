@@ -13,7 +13,73 @@
       {% include 'partials/_cabecalho.html' %}
 
     </header>
-    <main></main>
+    <main>
+
+      <div class="container" style="margin-bottom: 20px;">
+        <div class="col-lg-9 ">
+
+          <h4 class="text-center">Dados da Empresa</h4>
+
+          <form class="row g-3">
+          
+              <div class="col-12">
+                <label for="nomedaempresa" class="form-label">Nome da Empresa </label>
+                <input type="text" class="form-control" id="nomedaempresa" placeholder="A arrumar">
+              </div>
+
+              <div class="col-sm-6">
+                <label for="telefone1" class="form-label">Telefone 1</label>
+                <input type="text" class="form-control" id="telefone1" placeholder="A arrumar (xx) xxxx-xxxx">
+              </div>
+  
+              <div class="col-sm-6">
+                <label for="telefone2" class="form-label">Telefone 2</label>
+                <input type="text" class="form-control" id="telefone2" placeholder="A arrumar (xx) x.xxxx-xxxx">
+              </div>
+    
+              <div class="col-12">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="A arrumar you@example.com">
+              </div>
+  
+              <div class="col-12">
+                <label for="endereco" class="form-label">Endereço</label>
+                <input type="text" class="form-control" id="endereco" placeholder="A arrumar" >
+              </div>
+  
+              <div class="col-sm-1">
+                <label for="estado" class="form-label">Estado</label>
+                <input type="text" class="form-control" id="estado" placeholder="PE">
+              </div>
+  
+              <div class="col-sm-4">
+                <label for="cidade" class="form-label">Cidade</label>
+                <input type="text" class="form-control" id="cidade" placeholder="A arrumar">
+              </div>
+
+              <div class="col-12">
+                <label for="google" class="form-label">Geolocalização no Google Maps</label>
+                <input type="text" class="form-control" id="google" placeholder="A arrumar" >
+              </div>  
+            
+              <div class="input-group">
+                <div class="col-12">
+                  <label for="logo" class="form-label">Logomarca da Empresa</label>
+                  <input type="file" class="form-control" id="logo" aria-describedby="logo" aria-label="Upload">
+                </div>
+              </div>
+  
+            <div>
+              <button class="w-100 btn btn-outline-primary btn-lg" type="submit">Atualizar dados</button>
+            </div>    
+
+          </form>
+
+        </div>
+      </div>
+      
+
+    </main>
 
   </body>
 </html>

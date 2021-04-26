@@ -16,14 +16,18 @@
 
     <main>
     
-      <div class="container">
-        <form>
+      <div class="container" style="margin-bottom: 20px;">
+        <form class="row col-lg-9">
+          
           <div class="mb-3" >
-            <h5 class="text-center">
-              Empresa
-              {{ TextoEmpresa.texto.1 }}
-            <textarea class="form-control" id="empresatexto" rows="3" placeholder="{{ sobre_nos.texto }}"></textarea>
+            <h4 class="text-center" style="margin-bottom: 10px;">Texto Empresa</h4>
+            <textarea class="form-control" id="empresatexto" rows="3" placeholder="A arrumar"></textarea>
           </div>
+
+          <div>
+            <button class="w-100 btn btn-outline-primary btn-lg" type="submit">Atualizar Texto</button>
+          </div>   
+
         </form>
       </div>
 
