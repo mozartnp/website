@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 
 from .models import TextoEmpresa
+from produtos.models import Categoria
 
 def manutencao(request):
 
@@ -39,7 +40,14 @@ def categoria(request):
 
     #Verificação de usuario para poder usar ou não a tela de manutencao
     if request.user.is_authenticated:
-        return render(request, 'manutencao_templates/categoria.html')
+
+        categorias = Categoria.objects.all()
+
+        dados = {
+            'categorias' : categorias
+        }
+
+        return render(request, 'manutencao_templates/categoria.html', dados)
     else:
         return redirect('login')
 
