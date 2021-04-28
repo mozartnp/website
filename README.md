@@ -21,3 +21,5 @@ Perguntar na Alura o porque quando eu puxo os arquivos estaticos que estão em a
 
 Incluir o Favicon
 
+Inserir alerta quando login não localizado
+
