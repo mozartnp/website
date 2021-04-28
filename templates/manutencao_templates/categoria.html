@@ -18,18 +18,19 @@
       <div class="container" style="margin-bottom: 20px;">
         <div class="col-lg-8 offset-lg-2">
 
-          <form class="row">
+          <form class="row" form action="{% url 'categoria' %}" method="POST">
+            {% csrf_token %}
             <h4 class="text-center">Criar e editar Categorias</h4>
 
             <div class="col-sm-6">
               <label for="criarcategoria" class="form-label">Criar nova categoria </label>
-              <input type="text" class="form-control" id="criarcategoria" placeholder="A arrumar">
+              <input type="text" class="form-control" name="criarcategoria" placeholder="Nome da categoria">
             </div>
 
             <div class="col-sm-6" style="padding-top: 30px;">
               <button class="w-100 btn btn-outline-primary" type="submit">Criar</button>
             </div>    
-
+            {% include 'partials/_alertas.html' %}
           </form>
 
           <hr>

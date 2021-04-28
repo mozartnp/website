@@ -13,7 +13,32 @@
       {% include 'partials/_cabecalho.html' %}
 
     </header>
-    <main></main>
+    <main>
+
+      <div class="container" style="margin-bottom: 20px;">
+        <div class="col-lg-8 offset-lg-2">
+
+          <h4 class="text-center" style="margin-bottom: 20px;">Criar e editar Produtos</h4>
+          
+
+          {% if categorias %}
+          {% for categoria in categorias %}
+          <div class="container border border-success col-8 offset-lg-2" style="margin-bottom: 10px; ">
+            <a href="#" class="row mb-3 text-decoration-none text-center">
+              <div>
+                <h6 style="color: black;">{{ categoria.nome_da_categoria }}</h6>
+                <h6 class="fw-light" style="color: black;">Clique aqui para criar, editar ou excluir produtos desta categoria</h6>
+              </div>
+            </a>
+          </div>
+          {% endfor %}
+          {% else %}
+          {% endif %}
+
+        </div>
+      </div>
+
+    </main>
 
   </body>
 </html>

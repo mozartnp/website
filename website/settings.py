@@ -133,3 +133,11 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'website/static/website'),
     os.path.join(BASE_DIR, 'home/static/home'),
 ]
+
+# Messages
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+    messages.SUCCESS: 'success',
+    messages.WARNING: 'warning',
+}
