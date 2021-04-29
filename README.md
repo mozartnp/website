@@ -23,3 +23,4 @@ Incluir o Favicon
 
 Inserir alerta quando login não localizado
 
+Arrumar o "mostrar senha"

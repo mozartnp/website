@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_list_or_404, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import auth, messages
 
@@ -60,6 +60,31 @@ def categoria(request):
             return redirect('categoria')
             
         return render(request, 'manutencao_templates/categoria.html', dados)
+    else:
+        return redirect('login')
+
+def editacategoria(request, id_decategoria):
+
+   
+
+    #Verificação de usuario para poder usar ou não a tela de manutencao
+    if request.user.is_authenticated:
+
+        if request.method == 'POST':
+
+            novo_nome = request.POST['edicategoria']
+            Categoria.objects.filter(id=id_decategoria).update(nome_da_categoria=novo_nome)
+            return redirect('categoria')
+        
+        else:
+
+            categoria = get_object_or_404(Categoria, pk=id_decategoria) 
+
+            categoria_a_exibir = {
+                'categoria' : categoria
+            }
+            
+            return render(request, 'manutencao_templates/editacategoria.html', categoria_a_exibir)
     else:
         return redirect('login')
 

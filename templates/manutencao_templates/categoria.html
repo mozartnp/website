@@ -18,7 +18,7 @@
       <div class="container" style="margin-bottom: 20px;">
         <div class="col-lg-8 offset-lg-2">
 
-          <form class="row" form action="{% url 'categoria' %}" method="POST">
+          <form class="row" action="{% url 'categoria' %}" method="POST">
             {% csrf_token %}
             <h4 class="text-center">Criar e editar Categorias</h4>
 
@@ -38,7 +38,7 @@
           {% if categorias %}
           {% for categoria in categorias %}
           <div class="container border border-success col-8 offset-lg-2" style="margin-bottom: 10px; ">
-            <a href="#" class="row mb-3 text-decoration-none text-center">
+            <a href="{% url 'editacategoria'  categoria.id %}" class="row mb-3 text-decoration-none text-center">
               <div>
                 <h6 style="color: black;">{{ categoria.nome_da_categoria }}</h6>
                 <h6 class="fw-light" style="color: black;">Clique aqui para editar ou excluir</h6>
