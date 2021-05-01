@@ -1,0 +1,74 @@
+<!--Para avisar que a pagina é uma extenção da base.html-->
+{% extends 'base.html' %}
+
+<!--Para carregar os arquivos estaticos na pagina.-->
+{% load static %}
+
+<!--Para indicar qual bloco será inserida no base.html-->
+{% block content %}
+
+    <body>
+        <header>
+
+            {% include 'partials/_cabecalho.html' %}
+
+        </header>
+        <main>
+            <div class="container" style="margin-bottom: 20px;">
+                <div class="col-lg-8 offset-lg-2">
+
+                    <h4 class="text-center">Edição do produto: {{ produto.nome_do_produto }}</h4>
+                    <hr>
+
+                    <form class="row" action="#" method="POST">
+                        {% csrf_token %}
+                        <h5 class="text-center">Editar o produto</h5>
+            
+                        <div class="col-sm-6">
+                            <label for="nomeproduto" class="form-label">Novo nome do produto</label>
+                            <input type="text" class="form-control" name="nomeproduto" placeholder="{{ produto.nome_do_produto }}">
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="imagemproduto" class="form-label">Nova imagem do produto</label>
+                            <div class="input-group ">
+                                <input type="file" class="form-control" id="imagemproduto" aria-describedby="imagemproduto">
+                            </div>
+                        </div>
+                                    
+                        <div class="col-sm-2">
+                          <button class="w-100 btn btn-outline-primary" type="submit">Alterar</button>
+                        </div> 
+
+                        <div class="col-sm-2 offset-sm-8 " style="padding-top: 10px; padding-bottom: 10px">
+                            <button class="w-100 btn btn-outline-danger" type="button" data-bs-toggle="modal" data-bs-target="#comfirmacao">Excluir</button>
+                        </div>   
+                        {% include 'partials/_alertas.html' %}
+                    </form>
+                    
+                </div>
+
+                 <!--Moral de confirmação-->
+                 <div class="modal fade" tabindex="-1" id="comfirmacao" aria-labelledby="modallabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h6 class="modal-title" id="modallabel">Tem certeza que deseja excluir o produto: {{ produto.nome_do_produto }}?</h6>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <div class="col-sm-2 offset-sm-7" style="padding-top: 10px; padding-bottom: 10px">
+                                    <a href="#" class="btn btn-outline-danger" type="button">Excluir</a>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+    </body>
+
+{% endblock %}

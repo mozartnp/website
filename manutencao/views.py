@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth, messages
 
 from .models import TextoEmpresa
-from produtos.models import Categoria
+from produtos.models import Categoria, Iten
 
 def manutencao(request):
 
@@ -50,10 +50,10 @@ def categoria(request):
         if request.method == 'POST':
             
             nome_categoria  = request.POST['criarcategoria']
-            for x in categorias:
-                if nome_categoria == x.nome_da_categoria:
-                    messages.error(request, 'Já há um categoria com este nome.')
-                    return render(request, 'manutencao_templates/categoria.html', dados)
+
+            if Categoria.objects.filter(nome_da_categoria=nome_categoria).exists():
+                messages.error(request, 'Já há um categoria com este nome.')
+                return render(request, 'manutencao_templates/categoria.html', dados)
 
             messages.success(request, 'Categoria cadastrada com sucesso.')    
             Categoria.objects.create(nome_da_categoria=nome_categoria)
@@ -65,28 +65,36 @@ def categoria(request):
 
 def editacategoria(request, id_decategoria):
 
-   
-
     #Verificação de usuario para poder usar ou não a tela de manutencao
     if request.user.is_authenticated:
+
+        categoria = get_object_or_404(Categoria, pk=id_decategoria) 
+
+        categoria_a_exibir = {
+            'categoria' : categoria
+        }
 
         if request.method == 'POST':
 
             novo_nome = request.POST['edicategoria']
+            if Categoria.objects.filter(nome_da_categoria=novo_nome).exists():
+                    messages.error(request, 'Já há um categoria com este nome.')
+                    return render(request, 'manutencao_templates/editacategoria.html', categoria_a_exibir)
+                    
             Categoria.objects.filter(id=id_decategoria).update(nome_da_categoria=novo_nome)
             return redirect('categoria')
         
-        else:
-
-            categoria = get_object_or_404(Categoria, pk=id_decategoria) 
-
-            categoria_a_exibir = {
-                'categoria' : categoria
-            }
-            
+        else:          
             return render(request, 'manutencao_templates/editacategoria.html', categoria_a_exibir)
     else:
         return redirect('login')
+
+def deletando_categoria(request, id_decategoria):
+
+     #Verificação de usuario para poder usar ou não a tela de manutencao
+    if request.user.is_authenticated:
+        Categoria.objects.get(pk=id_decategoria).delete()
+        return redirect('categoria')
 
 def produto(request):
 
@@ -100,6 +108,36 @@ def produto(request):
         }
 
         return render(request, 'manutencao_templates/produto.html', dados)
+    else:
+        return redirect('login')
+
+def editaprodutos(request, id_decategoria):
+
+    #Verificação de usuario para poder usar ou não a tela de manutencao
+    if request.user.is_authenticated:
+
+        categoria = get_object_or_404(Categoria, pk=id_decategoria) 
+        produtos = Iten.objects.filter(categoria=categoria)
+
+        dados = {
+            'categoria' : categoria ,
+            'produtos' : produtos,
+        }  
+        return render(request, 'manutencao_templates/editaprodutos.html', dados)
+    else:
+        return redirect('login')
+
+def editaproduto(request, id_doproduto):
+
+    #Verificação de usuario para poder usar ou não a tela de manutencao
+    if request.user.is_authenticated:
+
+        produto = get_object_or_404(Iten, pk=id_doproduto) 
+        
+        dados = {
+            'produto' : produto
+        }  
+        return render(request, 'manutencao_templates/editaproduto.html', dados)
     else:
         return redirect('login')
 

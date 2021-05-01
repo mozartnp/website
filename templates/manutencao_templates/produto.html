@@ -24,7 +24,7 @@
           {% if categorias %}
           {% for categoria in categorias %}
           <div class="container border border-success col-8 offset-lg-2" style="margin-bottom: 10px; ">
-            <a href="#" class="row mb-3 text-decoration-none text-center">
+            <a href="{% url 'editaprodutos' categoria.id %}" class="row mb-3 text-decoration-none text-center">
               <div>
                 <h6 style="color: black;">{{ categoria.nome_da_categoria }}</h6>
                 <h6 class="fw-light" style="color: black;">Clique aqui para criar, editar ou excluir produtos desta categoria</h6>

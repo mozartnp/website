@@ -24,3 +24,5 @@ Incluir o Favicon
 Inserir alerta quando login não localizado
 
 Arrumar o "mostrar senha"
+
+Exibir a imagem do produto na edição de produto

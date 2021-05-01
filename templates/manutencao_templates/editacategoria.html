@@ -18,27 +18,45 @@
             <div class="container" style="margin-bottom: 20px;">
                 <div class="col-lg-8 offset-lg-2">
 
-                    <div class="container border border-success col-8 offset-lg-2 row" style="margin-bottom: 10px;">
-                      
-                        <form class="row" action="{% url 'editacategoria' categoria.id%}" method="POST">
-                            {% csrf_token %}
-                            
-                            <div class="col-12" style="padding-top: 20px;">
-                                <label for="edicategoria" class="form-label">Nome da categoria</label>
-                                <input type="text" class="form-control" name="edicategoria" id="edicategoria" placeholder="{{ categoria.nome_da_categoria }}">
-                            </div>
-                            <div class="col-sm-2 " style="padding-top: 10px; padding-bottom: 10px;">
-                                <button class="btn btn-outline-primary" type="submit">Alterar</button>
-                            </div>   
-                            <div class="col-sm-2 offset-sm-7" style="padding-top: 10px; padding-bottom: 10px">
-                                <button class="btn btn-outline-danger" type="submit">Excluir</button>
-                            </div>   
-
-                        </form>
-                    </div>
+                    <h4 class="text-center">Edição da categoria: {{ categoria.nome_da_categoria }}</h4>
+                    <hr>
                     
+                    <form class="row" action="{% url 'editacategoria' categoria.id%}" method="POST">
+                        {% csrf_token %}
+                        
+                        <div class="col-sm-12">
+                            <label for="edicategoria" class="form-label">Nome da categoria</label>
+                            <input type="text" class="form-control" name="edicategoria" id="edicategoria" placeholder="{{ categoria.nome_da_categoria }}">
+                        </div>
+                        <div class="col-sm-2 " style="padding-top: 10px; padding-bottom: 10px;">
+                            <button class="w-100 btn btn-outline-primary" type="submit">Alterar</button>
+                        </div> 
+                        <div class="col-sm-2 offset-sm-8" style="padding-top: 10px; padding-bottom: 10px">
+                            <button class="w-100 btn btn-outline-danger" type="button" data-bs-toggle="modal" data-bs-target="#comfirmacao">Excluir</button>
+                        </div> 
+                        {% include 'partials/_alertas.html' %}
+                    </form>
 
                 </div>
+
+                <!--Moral de confirmação-->
+                <div class="modal fade" tabindex="-1" id="comfirmacao" aria-labelledby="modallabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h6 class="modal-title" id="modallabel">Tem certeza que deseja excluir a categoria {{ categoria.nome_da_categoria }}, e todos os seus produtos?</h6>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <div class="col-sm-2 offset-sm-7" style="padding-top: 10px; padding-bottom: 10px">
+                                    <a href="{% url 'deletando_categoria' categoria.id%}" class="btn btn-outline-danger" type="button">Excluir</a>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             
 
