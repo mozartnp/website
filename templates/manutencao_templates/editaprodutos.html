@@ -38,7 +38,7 @@
                         </div>
                                     
                         <div>
-                          <button class="w-100 btn btn-outline-primary" type="submit">Criar</button>
+                            <button class="w-100 btn btn-outline-primary" type="submit">Criar</button>
                         </div>    
                         {% include 'partials/_alertas.html' %}
                     </form>
@@ -49,12 +49,12 @@
                     {% for produto in produtos %}
                     <div class="container border border-success col-8 offset-lg-2" style="margin-bottom: 10px; ">
                         <a href="{% url 'editaproduto' produto.id%}" class="row mb-3 text-decoration-none text-center">
-                          <div>
-                            <h6 style="color: black;">{{ produto.nome_do_produto }}</h6>
-                            <h6 class="fw-light" style="color: black;">Clique aqui para criar, editar ou excluir o produto</h6>
-                          </div>
+                            <div>
+                                <h6 style="color: black;">{{ produto.nome_do_produto }}</h6>
+                                <h6 class="fw-light" style="color: black;">Clique aqui para criar, editar ou excluir o produto</h6>
+                            </div>
                         </a>
-                      </div>
+                    </div>
                     {% endfor %}
                     {% else %}
                     <h3 class ="text-center">Categoria sem produto cadastrado</h3>

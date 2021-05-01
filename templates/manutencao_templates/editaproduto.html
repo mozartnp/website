@@ -48,8 +48,8 @@
                     
                 </div>
 
-                 <!--Moral de confirmação-->
-                 <div class="modal fade" tabindex="-1" id="comfirmacao" aria-labelledby="modallabel" aria-hidden="true">
+                <!--Moral de confirmação-->
+                <div class="modal fade" tabindex="-1" id="comfirmacao" aria-labelledby="modallabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -59,7 +59,7 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <div class="col-sm-2 offset-sm-7" style="padding-top: 10px; padding-bottom: 10px">
-                                    <a href="#" class="btn btn-outline-danger" type="button">Excluir</a>
+                                    <a href="{% url 'deltando_produto' produto.id%}" class="btn btn-outline-danger" type="button">Excluir</a>
                                 </div> 
                             </div>
                         </div>

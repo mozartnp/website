@@ -95,6 +95,8 @@ def deletando_categoria(request, id_decategoria):
     if request.user.is_authenticated:
         Categoria.objects.get(pk=id_decategoria).delete()
         return redirect('categoria')
+    else:
+        return redirect('login')
 
 def produto(request):
 
@@ -141,3 +143,11 @@ def editaproduto(request, id_doproduto):
     else:
         return redirect('login')
 
+def deltando_produto(request, id_doproduto):
+
+    #Verificação de usuario para poder usar ou não a tela de manutencao
+    if request.user.is_authenticated:
+        Iten.objects.get(pk=id_doproduto).delete()
+        return redirect('produto')
+    else:
+        return redirect('login')
