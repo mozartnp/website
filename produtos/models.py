@@ -6,5 +6,6 @@ class Categoria(models.Model):
         return self.nome_da_categoria
 
 class Iten(models.Model):
-    nome_do_produto = models.CharField(max_length=30)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
+    nome_do_produto = models.CharField(max_length=30)
+    imagem = models.ImageField(upload_to = 'temp')

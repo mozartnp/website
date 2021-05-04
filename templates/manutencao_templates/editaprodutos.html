@@ -21,7 +21,7 @@
                     <h4 class="text-center">Produtos da cateogria: {{ categoria.nome_da_categoria }}</h4>
                     <hr>
 
-                    <form class="row" action="#" method="POST">
+                    <form class="row" action="{% url 'editaprodutos' categoria.id %}" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         <h5 class="text-center">Criar um novo produto</h5>
             
@@ -32,9 +32,7 @@
 
                         <div class="col-sm-6">
                             <label for="imagemproduto" class="form-label">Imagem do produto</label>
-                            <div class="input-group ">
-                                <input type="file" class="form-control" id="imagemproduto" aria-describedby="imagemproduto">
-                            </div>
+                            <input type="file" class="form-control" id="imagemproduto" name="imagemproduto">                            
                         </div>
                                     
                         <div>
