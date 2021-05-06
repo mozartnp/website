@@ -26,3 +26,6 @@ Inserir alerta quando login não localizado
 Arrumar o "mostrar senha"
 
 Exibir a imagem do produto na edição de produto
+
+Fazer um criadror de thumbnail ou fazer um função assicrona -- Para otimizar o uso do site
+

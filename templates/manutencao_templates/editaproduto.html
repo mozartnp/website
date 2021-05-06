@@ -45,10 +45,12 @@
                         </div>   
                         {% include 'partials/_alertas.html' %}
                     </form>
+
+                    <img src="{{ produto.imagem.url }}" alt="Não achei" class="img-fluid">
                     
                 </div>
 
-                <!--Moral de confirmação-->
+                <!--Modal de confirmação-->
                 <div class="modal fade" tabindex="-1" id="comfirmacao" aria-labelledby="modallabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">

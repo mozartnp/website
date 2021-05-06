@@ -128,15 +128,15 @@ def editaprodutos(request, id_decategoria):
 
         if request.method == 'POST':
 
-            id_decategoria = Categoria.objects.get(id=id_decategoria)
+            categoria = Categoria.objects.get(id=id_decategoria)
             nomeproduto = request.POST['nomeproduto']
             imagemproduto = request.FILES['imagemproduto']
                         
-            Iten.objects.create(categoria=id_decategoria, nome_do_produto=nomeproduto, imagem=imagemproduto)
+            Iten.objects.create(categoria=categoria, nome_do_produto=nomeproduto, imagem=imagemproduto)
             
             messages.success(request, 'Produto cadastrado com sucesso.')
-            return redirect('editaprodutos')
 
+            return redirect('editaprodutos', id_decategoria)
               
         return render(request, 'manutencao_templates/editaprodutos.html', dados)
     else:

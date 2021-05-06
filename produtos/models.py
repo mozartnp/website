@@ -8,4 +8,4 @@ class Categoria(models.Model):
 class Iten(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     nome_do_produto = models.CharField(max_length=30)
-    imagem = models.ImageField(upload_to = 'temp')
+    imagem = models.ImageField(upload_to='fotos/%d/%m/%Y')

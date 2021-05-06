@@ -111,22 +111,32 @@
                 <div class="row">
 
                     {% if categorias %}
-                    {% for categoria in categorias %}
+                    {% for catego in categorias %}
                     <div class="col-sm-4 " style="margin-top: 10px; margin-bottom: 10px;">
                         <div class="box-produto-img" >
-                            <a data-fancybox="images" href="{% static 'home/img/rodape.jpg' %}" data-caption="Testando" >
+                            <a data-fancybox="images-{{ catego.nome_da_categoria }}" href="{% static 'home/img/rodape.jpg' %}" data-caption="Testando" >
                                 <img class="img-fluid" src="{% static 'home/img/rodape.jpg' %}" style="height: 300px; width: 100%;">
                                 <div class="overlay">
                                     <div class="texto-info text-uppercase">
-                                        <h4>{{ categoria.nome_da_categoria }}</h4>
+                                        <h4>{{ catego.nome_da_categoria }}</h4>
                                     </div>
                                 </div>
                             </a>
                         </div>
                     </div>
+
                     {% endfor %}
                     {% else %}
                     {% endif %}
+
+                    
+                    {% for produto in produtos %}
+                    <div style="display: none;">
+                        <a href="{{ produto.imagem.url }}" data-fancybox="images-{{ produto.categoria }}" 
+                           data-caption="{{ produto.nome_do_produto }}"
+                           data-thumb="{{ produto.imagem.url }}"></a>
+                    </div>
+                    {% endfor %}
 
                 </div>
                 
