@@ -20,7 +20,7 @@
                     <h4 class="text-center">Edição do produto: {{ produto.nome_do_produto }}</h4>
                     <hr>
 
-                    <form class="row" action="#" method="POST">
+                    <form class="row" action="{% url 'editaproduto' produto.id %}" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         <h5 class="text-center">Editar o produto</h5>
             
@@ -31,9 +31,7 @@
 
                         <div class="col-sm-6">
                             <label for="imagemproduto" class="form-label">Nova imagem do produto</label>
-                            <div class="input-group ">
-                                <input type="file" class="form-control" id="imagemproduto" aria-describedby="imagemproduto">
-                            </div>
+                            <input type="file" class="form-control" id="imagemproduto" name="imagemproduto">                            
                         </div>
                                     
                         <div class="col-sm-2">

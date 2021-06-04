@@ -152,6 +152,23 @@ def editaproduto(request, id_doproduto):
         dados = {
             'produto' : produto
         }  
+
+        if request.method == 'POST':
+            item = Iten.objects.get(id=id_doproduto)
+            novo_nome = request.POST['nomeproduto']
+            nova_imagem = request.FILES.get('imagemproduto', False)
+            if nova_imagem:
+                item.imagem = nova_imagem
+            if novo_nome == '':
+                pass
+            else:
+                item.nome_do_produto = novo_nome
+  
+            item.save()
+
+            messages.success(request, 'Produto alterado com sucesso.')
+            return redirect('editaproduto', id_doproduto)
+
         return render(request, 'manutencao_templates/editaproduto.html', dados)
     else:
         return redirect('login')
