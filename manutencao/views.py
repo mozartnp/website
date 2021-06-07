@@ -1,9 +1,14 @@
+import os
+import shutil
+
 from django.shortcuts import render, redirect, get_list_or_404, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import auth, messages
+from django.conf import settings
 
 from .models import TextoEmpresa
 from produtos.models import Categoria, Iten
+from extra import direcionamento_imagem
 
 def manutencao(request):
 
@@ -93,8 +98,14 @@ def deletando_categoria(request, id_decategoria):
 
      #Verificação de usuario para poder usar ou não a tela de manutencao
     if request.user.is_authenticated:
-        Categoria.objects.get(pk=id_decategoria).delete()
+
+        categoria = get_object_or_404(Categoria, pk=id_decategoria) 
+        deleta = settings.MEDIA_ROOT + '/fotos/' + str(categoria.id)
+        if os.path.exists(deleta):
+            shutil.rmtree(deleta)
+        categoria.delete()
         return redirect('categoria')
+
     else:
         return redirect('login')
 
@@ -133,6 +144,7 @@ def editaprodutos(request, id_decategoria):
             imagemproduto = request.FILES['imagemproduto']
                         
             Iten.objects.create(categoria=categoria, nome_do_produto=nomeproduto, imagem=imagemproduto)
+            direcionamento_imagem.imagem_caminho_produto(nomeproduto)
             
             messages.success(request, 'Produto cadastrado com sucesso.')
 
@@ -158,6 +170,8 @@ def editaproduto(request, id_doproduto):
             novo_nome = request.POST['nomeproduto']
             nova_imagem = request.FILES.get('imagemproduto', False)
             if nova_imagem:
+                deleta = item.imagem.path
+                os.remove(deleta)
                 item.imagem = nova_imagem
             if novo_nome == '':
                 pass
@@ -165,6 +179,7 @@ def editaproduto(request, id_doproduto):
                 item.nome_do_produto = novo_nome
   
             item.save()
+            direcionamento_imagem.imagem_caminho_produto(item.nome_do_produto)
 
             messages.success(request, 'Produto alterado com sucesso.')
             return redirect('editaproduto', id_doproduto)
@@ -177,7 +192,14 @@ def deltando_produto(request, id_doproduto):
 
     #Verificação de usuario para poder usar ou não a tela de manutencao
     if request.user.is_authenticated:
-        Iten.objects.get(pk=id_doproduto).delete()
-        return redirect('produto')
+        
+        produto = get_object_or_404(Iten, pk=id_doproduto) 
+        id_decategoria = produto.categoria.id
+        deleta = produto.imagem.path
+        if os.path.exists(deleta):
+            os.remove(deleta)
+        produto.delete()
+        return redirect('editaprodutos', id_decategoria)
+
     else:
         return redirect('login')

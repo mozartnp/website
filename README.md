@@ -29,3 +29,6 @@ Melhorar validação de usuarios e afins
 Refatorar os tampletes como o django tuto faz
 
 Tratar as imagens, quando faço uma atualização de imagem, ele não exclui a já existente
+
+Vantagens:
+As imagens dos produtos estão armazenadas em /media/foto/(id da categoria)/(nome da imagem, que deve ser id da categoria + id do produto)

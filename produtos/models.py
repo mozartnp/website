@@ -7,9 +7,11 @@ class Categoria(models.Model):
         return self.nome_da_categoria
 
 class Iten(models.Model):
+      
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     nome_do_produto = models.CharField(max_length=30)
-    imagem = models.ImageField(upload_to='fotos/%d/%m/%Y')
+    imagem = models.ImageField(upload_to='temp/')
 
     def __str__(self):
-        return self.nome_do_produto
+        return self.nome_do_produto  
+
