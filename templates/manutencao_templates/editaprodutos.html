@@ -46,7 +46,7 @@
                     {% if produtos %}
                     {% for produto in produtos %}
                     <div class="container border border-success col-8 offset-lg-2" style="margin-bottom: 10px; ">
-                        <a href="{% url 'editaproduto' produto.id%}" class="row mb-3 text-decoration-none text-center">
+                        <a href="{% url 'editaproduto' produto.id%}" class="row pb-3 text-decoration-none text-center">
                             <div>
                                 <h6 style="color: black;">{{ produto.nome_do_produto }}</h6>
                                 <h6 class="fw-light" style="color: black;">Clique aqui para criar, editar ou excluir o produto</h6>

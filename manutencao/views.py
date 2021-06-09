@@ -166,18 +166,33 @@ def editaproduto(request, id_doproduto):
         }  
 
         if request.method == 'POST':
-            item = Iten.objects.get(id=id_doproduto)
+
+            item = Iten.objects.get(pk=id_doproduto)
+            catego = Categoria.objects.get(pk=item.categoria.id)
+            id_decategoria = catego.id
+
             novo_nome = request.POST['nomeproduto']
             nova_imagem = request.FILES.get('imagemproduto', False)
+            capa_va = request.POST.get('checkdacapa', False)
+
             if nova_imagem:
                 deleta = item.imagem.path
                 os.remove(deleta)
                 item.imagem = nova_imagem
-            if novo_nome == '':
-                pass
-            else:
+
+            if novo_nome != '':
                 item.nome_do_produto = novo_nome
-  
+          
+            if capa_va != item.capa:
+                if capa_va == 'on' and item.capa == False:
+                    item.capa = True
+                    
+                    if catego.produto_de_capa != None:
+                        outroitem = catego.produto_de_capa.id
+                        Iten.objects.filter(id=outroitem).update(capa=False)
+
+                    Categoria.objects.filter(id=id_decategoria).update(produto_de_capa=id_doproduto)
+                                    
             item.save()
             direcionamento_imagem.imagem_caminho_produto(item.nome_do_produto)
 

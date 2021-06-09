@@ -114,14 +114,25 @@
                     {% for catego in categorias %}
                     <div class="col-sm-4 " style="margin-top: 10px; margin-bottom: 10px;">
                         <div class="box-produto-img" >
-                            <a data-fancybox="images-{{ catego.nome_da_categoria }}" href="{% static 'home/img/rodape.jpg' %}" data-caption="Testando" >
-                                <img class="img-fluid" src="{% static 'home/img/rodape.jpg' %}" style="height: 300px; width: 100%;">
+                            <a data-fancybox="images-{{ catego.nome_da_categoria }}"
+                            
+                            {% if catego.produto_de_capa is None %}
+                            href="{% static 'home/img/sem-imagem-de-capa.png' %}" data-caption="Sem imagem de capa" >
+                                <img class="img-fluid" src="{% static 'home/img/sem-imagem-de-capa.png' %}" style="height: 300px; width: 100%;">
+ 
+                            {% elif catego.produto_de_capa is not None %}
+                            href="{{ catego.produto_de_capa.imagem.url }}" data-caption="{{ catego.produto_de_capa.nome_do_produto }}" >
+                                <img class="img-fluid" src="{{ catego.produto_de_capa.imagem.url }}" style="height: 300px; width: 100%;">
+                            
+                            {% endif %}
+
                                 <div class="overlay">
                                     <div class="texto-info text-uppercase">
                                         <h4>{{ catego.nome_da_categoria }}</h4>
                                     </div>
                                 </div>
                             </a>
+                            
                         </div>
                     </div>
 
@@ -131,11 +142,13 @@
 
                     
                     {% for produto in produtos %}
+                    {% if produto.capa == False %}
                     <div style="display: none;">
                         <a href="{{ produto.imagem.url }}" data-fancybox="images-{{ produto.categoria }}" 
                            data-caption="{{ produto.nome_do_produto }}"
                            data-thumb="{{ produto.imagem.url }}"></a>
                     </div>
+                    {% endif %}
                     {% endfor %}
 
                 </div>

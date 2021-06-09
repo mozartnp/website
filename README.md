@@ -21,6 +21,8 @@ Incluir o Favicon
 
 Inserir alerta quando login não localizado
 
+Arrumar o titulo das paginas
+
 Arrumar o "mostrar senha"
 
 Fazer um criadror de thumbnail ou fazer um função assicrona -- Para otimizar o uso do site
