@@ -60,7 +60,7 @@
          <!-- Carrossel de imagens -->
          <div id="carrosselImagens" class="teste carousel slide" data-bs-ride='carousel' >
             <div class ='carousel-indicators'>
-                <button type="button" data-bs-target="#carrosselImagens" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carrosselImagens" data-bs-slide-to="0" aria-label="Slide 1" class="active" aria-current="true"></button>
                 <button type="button" data-bs-target="#carrosselImagens" data-bs-slide-to="1" aria-label="Slide 2"></button>
                 <button type="button" data-bs-target="#carrosselImagens" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
@@ -115,7 +115,7 @@
                     <div class="col-sm-4 " style="margin-top: 10px; margin-bottom: 10px;">
                         <div class="box-produto-img" >
                             <a data-fancybox="images-{{ catego.nome_da_categoria }}"
-                            
+
                             {% if catego.produto_de_capa is None %}
                             href="{% static 'home/img/sem-imagem-de-capa.png' %}" data-caption="Sem imagem de capa" >
                                 <img class="img-fluid" src="{% static 'home/img/sem-imagem-de-capa.png' %}" style="height: 300px; width: 100%;">

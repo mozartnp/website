@@ -5,12 +5,14 @@ from django.shortcuts import render, redirect, get_list_or_404, get_object_or_40
 from django.contrib.auth.models import User
 from django.contrib import auth, messages
 from django.conf import settings
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import TextoEmpresa
 from produtos.models import Categoria, Iten
 from extra import direcionamento_imagem
 
 def manutencao(request):
+    ''' View para pagina inical da manutenção '''
 
     #Verificação de usuario para poder usar ou não a tela de manutencao
     if request.user.is_authenticated:
@@ -19,6 +21,7 @@ def manutencao(request):
         return redirect('login')
 
 def dados(request):
+    ''' Pagina de edição dos dados da empresa do site '''
 
     #Verificação de usuario para poder usar ou não a tela de manutencao
     if request.user.is_authenticated:
@@ -27,6 +30,7 @@ def dados(request):
         return redirect('login')
 
 def sobre(request):
+    ''' Pagina de edição do texto "sobre nos" e das imagens que compõe o site '''
 
     #Verificação de usuario para poder usar ou não a tela de manutencao
     if request.user.is_authenticated:
@@ -42,14 +46,19 @@ def sobre(request):
         return redirect('login')
 
 def categoria(request):
+    ''' Pagina para criar e acessar as categorias '''
 
     #Verificação de usuario para poder usar ou não a tela de manutencao
     if request.user.is_authenticated:
 
-        categorias = Categoria.objects.all()
+        categorias = Categoria.objects.all().order_by('nome_da_categoria')
+
+        paginator = Paginator(categorias, 10)
+        page = request.GET.get('page')
+        categorias_por_pagina = paginator.get_page(page)
 
         dados = {
-            'categorias' : categorias
+            'categorias' : categorias_por_pagina
         }
 
         if request.method == 'POST':
@@ -69,6 +78,7 @@ def categoria(request):
         return redirect('login')
 
 def editacategoria(request, id_decategoria):
+    ''' Pagina para editar a categoria '''
 
     #Verificação de usuario para poder usar ou não a tela de manutencao
     if request.user.is_authenticated:
@@ -95,6 +105,7 @@ def editacategoria(request, id_decategoria):
         return redirect('login')
 
 def deletando_categoria(request, id_decategoria):
+    ''' View para deletar a categoria, e os produtos da categoria '''
 
      #Verificação de usuario para poder usar ou não a tela de manutencao
     if request.user.is_authenticated:
@@ -110,14 +121,19 @@ def deletando_categoria(request, id_decategoria):
         return redirect('login')
 
 def produto(request):
+    ''' Pagina para escolher a categoria que a pessoa quer criar/editar os produtos '''
 
     #Verificação de usuario para poder usar ou não a tela de manutencao
     if request.user.is_authenticated:
 
-        categorias = Categoria.objects.all()
+        categorias = Categoria.objects.all().order_by('nome_da_categoria')
+
+        paginator = Paginator(categorias, 10)
+        page = request.GET.get('page')
+        categorias_por_pagina = paginator.get_page(page)
 
         dados = {
-            'categorias' : categorias
+            'categorias' : categorias_por_pagina
         }
 
         return render(request, 'manutencao_templates/produto.html', dados)
@@ -125,16 +141,21 @@ def produto(request):
         return redirect('login')
 
 def editaprodutos(request, id_decategoria):
+    ''' Pagina para criar produtos dentro de uma determinada categoria, ou abrir um produto para editar '''
 
     #Verificação de usuario para poder usar ou não a tela de manutencao
     if request.user.is_authenticated:
 
         categoria = get_object_or_404(Categoria, pk=id_decategoria) 
-        produtos = Iten.objects.filter(categoria=categoria)
+        produtos = Iten.objects.filter(categoria=categoria).order_by('nome_do_produto')
+
+        paginator = Paginator(produtos, 10)
+        page = request.GET.get('page')
+        produtos_por_pagina = paginator.get_page(page)
 
         dados = {
             'categoria' : categoria ,
-            'produtos' : produtos,
+            'produtos' : produtos_por_pagina,
         }
 
         if request.method == 'POST':
@@ -155,6 +176,7 @@ def editaprodutos(request, id_decategoria):
         return redirect('login')
 
 def editaproduto(request, id_doproduto):
+    ''' Pagina para editar um determinado produto '''
 
     #Verificação de usuario para poder usar ou não a tela de manutencao
     if request.user.is_authenticated:
@@ -192,7 +214,7 @@ def editaproduto(request, id_doproduto):
                         Iten.objects.filter(id=outroitem).update(capa=False)
 
                     Categoria.objects.filter(id=id_decategoria).update(produto_de_capa=id_doproduto)
-                                    
+                               
             item.save()
             direcionamento_imagem.imagem_caminho_produto(item.nome_do_produto)
 
@@ -204,6 +226,7 @@ def editaproduto(request, id_doproduto):
         return redirect('login')
 
 def deltando_produto(request, id_doproduto):
+    ''' View para deletar um produto '''
 
     #Verificação de usuario para poder usar ou não a tela de manutencao
     if request.user.is_authenticated:

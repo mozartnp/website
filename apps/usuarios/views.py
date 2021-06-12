@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 
 def login(request):
+    ''' Pagina de login do sistema '''
     
     if request.method =='POST':
         usuario = request.POST['usuario']
@@ -21,5 +22,7 @@ def login(request):
         return render(request, 'login.html')
 
 def logout(request):
+    ''' Pagina de logout do sistema '''
+
     auth.logout(request)
     return redirect('index')
