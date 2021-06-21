@@ -1,5 +1,6 @@
 import os
 from produtos.models import Iten
+from manutencao.models import Empresa
 from django.conf import settings
 from django.shortcuts import get_object_or_404
 
@@ -20,3 +21,21 @@ def imagem_caminho_produto(nome):
 
     os.rename(caminho_inicial, novo_caminho)
     produto.save()
+
+def imagem_logo_caminho():
+    empresa = Empresa.objects.get(pk=1)
+    caminho_inicial = empresa.logo.path
+
+    final = empresa.logo.name.split('.')
+    final = '.' + final[-1]
+    empresa.logo.name = 'logo' + final    
+
+    caminho = settings.MEDIA_ROOT + '/site'
+    novo_caminho = caminho + '/' + str(empresa.logo.name)
+    empresa.logo = 'site/' + str(empresa.logo.name)
+
+    if os.path.exists(caminho) is False:
+        os.mkdir(caminho)
+
+    os.rename(caminho_inicial, novo_caminho)
+    empresa.save()

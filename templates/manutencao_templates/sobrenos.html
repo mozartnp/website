@@ -17,11 +17,12 @@
     <main>
     
       <div class="container" style="margin-bottom: 20px;">
-        <form class="row col-lg-8 offset-lg-2">
+        <form class="row col-lg-8 offset-lg-2" action="{% url 'sobre' %}" method="POST">
+          {% csrf_token %}
           
           <div class="mb-3" >
             <h4 class="text-center" style="margin-bottom: 20px;">Texto Empresa</h4>
-            <textarea class="form-control" id="empresatexto" rows="3" placeholder="A arrumar"></textarea>
+            <textarea class="form-control" name= "empresatexto" rows="3" placeholder="Texto sobre nos"></textarea>
           </div>
 
           <div>

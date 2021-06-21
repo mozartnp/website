@@ -133,7 +133,7 @@ STATIC_ROOT =  os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'website/static/website'),
-    os.path.join(BASE_DIR, 'home/static/home'),
+    os.path.join(BASE_DIR, 'apps/home/static/home'),
 ]
 
 # Messages
@@ -147,5 +147,6 @@ MESSAGE_TAGS = {
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+# Apps
 PROJECT_ROOT = os.path.dirname(__file__)
 sys.path.insert(0, os.path.join(PROJECT_ROOT, '../apps'))

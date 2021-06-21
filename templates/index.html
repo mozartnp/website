@@ -18,12 +18,12 @@
                 <!--Cabeçalho-->
                 <div class="d-none d-lg-block" >
                     <div class="row" >
-                        <div class="col-md-5"><img src="{% static 'home/img/logo-aldeia-pedras.png' %}" class="img-fluid" style="margin-top: 20px; margin-left: 0px"></div> <!--A class img-fluid serve para subistituir a antiga,img-responsive, que dava a responsividade da imagem-->
+                        <div class="col-md-5"><img src="{{empresa.logo.url}}" class="img-fluid" style="margin-top: 20px; margin-left: 0px"></div> <!--#TODO Arrumar quando não tiver item--> <!--A class img-fluid serve para subistituir a antiga,img-responsive, que dava a responsividade da imagem-->
                         <div class="col-md-3"></div>
                         <div class="col-md-4" style="color: #E89B49; margin-top: 20px; padding-right: 15px; padding-left: 15px">
                             <p style="margin-top: 0; margin-bottom: 0; font-size: 17px;">Interessado?</p>
-                            <p style="margin-top: 0; margin-bottom: 0; font-size: 17px;">Entre em contato conosco também pelas redes sociais ou pelos telefones abaixo:</p>
-                            <p style="font-size: 18px; margin-bottom: 0; font-weight: bold;">+55 (81) 3459.3379 | 9.8356-2165</p>
+                            <p style="margin-top: 0; margin-bottom: 0; font-size: 17px;">Entre em contato conosco também pelos telefones abaixo:</p> 
+                            <p style="font-size: 18px; margin-bottom: 0; font-weight: bold;">+55 ({{empresa.ddd}}) {{empresa.telefone1}} | {{empresa.telefone2}}</p> <!--#TODO Arrumar quando não tiver item-->
                         </div>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                 
                     <!--Logo no navbar-->
                     <div class="navbar-brand d-lg-none d-xxl-none">
-                        <a href="#top"> <img src="{% static 'home/img/logo-aldeia-pedras.png' %}" class="img-fluid"  style="height: 40px;"> </a>
+                        <a href="#top"> <img src="{{empresa.logo.url}}" class="img-fluid"  style="height: 40px;"> </a> <!--#TODO Arrumar quando não tiver item-->
                     </div>
                     
                     <!--Menu sanduiche do navbar-->
@@ -93,8 +93,11 @@
                 <h1 class="text-uppercase" style="padding-bottom: 10px;">Empresa</h1>
                
                 <h4 style="font-size: 20px;">
-                    <p >Com mais de 15 anos atuando no mercado, a Aldeia Pedras vem oferecendo a seus clientes qualidade em produtos e serviços com agilidade nos prazos de entrega. Possuímos uma equipe com mão-de-obra especializada, para a execução de diversos projetos, visando atender as necessidades e desejos, desde grandes obras a peças simples e decorativas. </p>
-                    <p >Trabalhamos com diversas Pedras Naturais, Mármores e Granitos em padrões nacionais e importados, preservando sempre nossos preços competitivos. Temos como objetivo satisfazer nossos clientes, trabalhando com seriedade e respeito. </p>
+                    {%  if empresa %}
+                        {{ empresa.texto|linebreaks }}
+                    {% else %}
+                        <p> SEM TEXTO DE REFERENCIA </p> 
+                    {% endif %}
                 </h4>
 
             </div>
@@ -174,7 +177,7 @@
             <h1 class="text-uppercase text-center m-0" style="padding-bottom: 25px;">Encontre-nos</h1>
         </div>  
         <div style="background-color: rgba(34, 34, 34)">
-            <iframe title="Localização Aldeia Pedras" frameborder="0" height ="350" style="border:0; width: 100%;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2794.0211670752674!2d-35.008898557084486!3d-7.9634988034345024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x8d65c42214626886!2sAldeia+Pedras!5e0!3m2!1spt-BR!2sbr!4v1488156970870" allowfullscreen></iframe>
+            <iframe title="Localização {{empresa.nome_da_empresa}}" frameborder="0" height ="350" style="border:0; width: 100%;" src="{{empresa.geo_localizacao}}" allowfullscreen></iframe> <!--#TODO Arrumar quando não tiver item-->
         </div>
 
         <!--Contato-->
@@ -208,17 +211,17 @@
                     <div class="col-md-6 caixa" >
                         <div class="row rodape" >
                             <div class="col-lg-12" >
-                                <h5><i class="icon-rodape fas fa-map-marker-alt"></i> Estrada de Aldeia, s/n Km 9,5 - Camaragibe - PE</h5>
+                                <h5><i class="icon-rodape fas fa-map-marker-alt"></i> {{empresa.endereco}} - {{empresa.cidade}} - {{empresa.estado}}</h5> <!--#TODO Arrumar quando não tiver item-->
                             </div>
                         </div>
                         <div class="row rodape">
                             <div class="col-lg-12">
-                                <h5><i class="icon-rodape fas fa-phone-alt"></i> +55 (81) <a href="tel:(81)34593379" class="text-decoration-none"> 3459.3379</a> |<a href="tel:(81)983562165" class="text-decoration-none"> 9.8356-2165</a></h5>
+                                <h5><i class="icon-rodape fas fa-phone-alt"></i> +55 ({{empresa.ddd}}) <a href="tel:({{empresa.ddd}}){{empresa.telefone1}}" class="text-decoration-none"> {{empresa.telefone1}}</a> |<a href="tel:({{empresa.ddd}}){{empresa.telefone2}}" class="text-decoration-none"> {{empresa.telefone2}}</a></h5> <!--#TODO Arrumar quando não tiver item-->
                             </div>
                         </div>
                         <div class="row rodape">
                             <div class="col-lg-12">
-                                <h5><i class="icon-rodape fas fa-envelope"></i> <a href="mailto:aldeiapedras95@gmail.com" class="text-decoration-none">aldeiapedras95@gmail.com</a></h5>
+                                <h5><i class="icon-rodape fas fa-envelope"></i> <a href="mailto:{{empresa.email}}" class="text-decoration-none">{{empresa.email}}</a></h5> <!--#TODO Arrumar quando não tiver item-->
                             </div>
                         </div>
                     </div>

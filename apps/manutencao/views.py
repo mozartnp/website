@@ -7,7 +7,7 @@ from django.contrib import auth, messages
 from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-from .models import TextoEmpresa
+from .models import Empresa
 from produtos.models import Categoria, Iten
 from extra import direcionamento_imagem
 
@@ -25,6 +25,42 @@ def dados(request):
 
     #Verificação de usuario para poder usar ou não a tela de manutencao
     if request.user.is_authenticated:
+
+        if request.method =='POST':
+            nomedaempresa = request.POST['nomedaempresa']
+            ddd = request.POST['ddd']
+            telefone1 = request.POST['telefone1']
+            telefone2 = request.POST['telefone2']
+            email = request.POST['email']
+            endereco = request.POST['endereco']
+            estado = request.POST['estado']
+            cidade = request.POST['cidade']
+            geoloca = request.POST['geoloca']
+            nova_imagem = request.FILES.get('logo', False)
+            
+            try:
+                empresa = Empresa.objects.get(pk=1)
+            except Empresa.DoesNotExist:
+                var_temp = Empresa(id=1)
+                var_temp.save()
+                empresa = Empresa.objects.get(pk=1)
+
+            if nova_imagem:
+                empresa.logo = nova_imagem
+
+            empresa.nome_da_empresa = nomedaempresa
+            empresa.ddd = ddd
+            empresa.telefone1 = telefone1
+            empresa.telefone2 = telefone2
+            empresa.email = email
+            empresa.endereco = endereco
+            empresa.estado = estado
+            empresa.cidade = cidade 
+            empresa.geo_localizacao = geoloca
+
+            empresa.save()
+            direcionamento_imagem.imagem_logo_caminho()
+
         return render(request, 'manutencao_templates/dadosempresa.html')
     else:
         return redirect('login')
@@ -35,13 +71,21 @@ def sobre(request):
     #Verificação de usuario para poder usar ou não a tela de manutencao
     if request.user.is_authenticated:
 
-        sobre_nos = TextoEmpresa.objects.all()
+        if request.method == 'POST':
+            texto = request.POST['empresatexto']
+            
+            try:
+                empresa = Empresa.objects.get(pk=1)
+            except Empresa.DoesNotExist:
+                var_temp = Empresa(id=1)
+                var_temp.save()
+                empresa = Empresa.objects.get(pk=1)
 
-        dados = {
-            'sobre_nos' : sobre_nos
-        }
+            empresa.texto = texto
+
+            empresa.save()
         
-        return render(request, 'manutencao_templates/sobrenos.html',  dados)
+        return render(request, 'manutencao_templates/sobrenos.html')
     else:
         return redirect('login')
 
