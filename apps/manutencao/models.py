@@ -12,7 +12,12 @@ class Empresa(models.Model):
     estado = models.CharField(max_length=2, null=True)
     geo_localizacao = models.URLField(max_length=500, null=True)
     texto = models.TextField(null=True)
-    logo = models.ImageField(upload_to='temp/', null=True) #TODO
+    logo = models.ImageField(upload_to='temp/', null=True)
     
     def __str__(self):
         return self.nome_da_empresa 
+
+class Imagem_site(models.Model):
+
+    imagem = models.ImageField(upload_to='temp/')
+    rodape = models.BooleanField(default=False)

@@ -37,6 +37,7 @@ Refatorações a fazer:
     Fazer validações para entrada de dados, de sobre nos e dados da empresa
     Arrumar os titulos das paginas
     Limitar o numero de caracteres nos inputs em dados da empras, exemplo DDD pode caber mais de 3 digitos
+    Ordenar 
 
 Vantagens:
     As imagens dos produtos estão armazenadas em /media/foto/(id da categoria)/(nome da imagem, que deve ser id da categoria + id do produto)

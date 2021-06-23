@@ -7,7 +7,7 @@ from django.contrib import auth, messages
 from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-from .models import Empresa
+from .models import Empresa, Imagem_site
 from produtos.models import Categoria, Iten
 from extra import direcionamento_imagem
 
@@ -47,7 +47,9 @@ def dados(request):
 
             if nova_imagem:
                 empresa.logo = nova_imagem
+                #TODO arrumar a questão se tiver outra imagem, para não gerar muito lixo
 
+            #TODO arrumar validações, para por exemplo não passar valor vazio.
             empresa.nome_da_empresa = nomedaempresa
             empresa.ddd = ddd
             empresa.telefone1 = telefone1
@@ -88,6 +90,40 @@ def sobre(request):
         return render(request, 'manutencao_templates/sobrenos.html')
     else:
         return redirect('login')
+
+def imagenssite(request):
+    ''' View puramente para organizar as imagens do carrossel, ou do rodape'''
+    
+    #Verificação de usuario para poder usar ou não a tela de manutencao
+    if request.user.is_authenticated:
+
+        if request.method == 'POST':
+            imagemcarrossel = request.FILES.get('imagemcarrossel', False)
+            imagemrodape = request.FILES.get('imagemrodape', False)
+
+            if imagemcarrossel:
+                Imagem_site.objects.create(imagem=imagemcarrossel)
+                idimagem = Imagem_site.objects.order_by('id').reverse()[:1]
+                direcionamento_imagem.imagem_site(idimagem[0].id)
+
+            if imagemrodape:
+                try:
+                    imagemantiga = Imagem_site.objects.get(rodape=True)
+                    deleta = imagemantiga.imagem.path
+                    if os.path.exists(deleta):
+                        os.remove(deleta)
+
+                    imagemantiga.delete()
+
+                except Imagem_site.DoesNotExist:
+                    pass
+
+                Imagem_site.objects.create(imagem=imagemrodape, rodape=True)
+                idimagem = Imagem_site.objects.get(rodape=True)
+                direcionamento_imagem.imagem_site(idimagem.id)
+    
+
+        return redirect('sobre')
 
 def categoria(request):
     ''' Pagina para criar e acessar as categorias '''

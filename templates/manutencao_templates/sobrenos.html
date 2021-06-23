@@ -17,19 +17,46 @@
     <main>
     
       <div class="container" style="margin-bottom: 20px;">
-        <form class="row col-lg-8 offset-lg-2" action="{% url 'sobre' %}" method="POST">
-          {% csrf_token %}
-          
-          <div class="mb-3" >
-            <h4 class="text-center" style="margin-bottom: 20px;">Texto Empresa</h4>
-            <textarea class="form-control" name= "empresatexto" rows="3" placeholder="Texto sobre nos"></textarea>
-          </div>
+        <div class="col-lg-8 offset-lg-2">
 
-          <div>
-            <button class="w-100 btn btn-outline-primary btn-lg" type="submit">Atualizar Texto</button>
-          </div>   
+          <form class="row" action="{% url 'sobre' %}" method="POST">
+            {% csrf_token %}
+            
+            <div class="mb-3" >
+              <h4 class="text-center" style="margin-bottom: 20px;">Texto Empresa</h4>
+              <textarea class="form-control" name= "empresatexto" rows="3" placeholder="Texto sobre nos"></textarea>
+            </div>
 
-        </form>
+            <div>
+              <button class="w-100 btn btn-outline-primary btn-lg" type="submit">Atualizar Texto</button>
+            </div>   
+
+          </form>
+
+          <br><hr>
+
+          <form class="row" action="{% url 'imagenssite' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="col-sm-6">
+              <label for="imagemcarrossel" class="form-label">Inserir imagem no Carrossel</label>
+              <input type="file" class="form-control" id="imagemcarrossel" name="imagemcarrossel">              
+            </div>
+            
+            <div class="col-sm-6">
+              <label for="imagemrodape" class="form-label">Inserir/alterar imagem do Rodapé</label>
+              <input type="file" class="form-control" id="imagemrodape" name="imagemrodape">              
+            </div>
+
+            <div>
+              <button class="w-100 btn btn-outline-primary btn-lg" type="submit">Inserir imagens no site</button>
+            </div> 
+
+          </form>
+
+          <!--#TODO arrumar parte para deletar... Deixar miniaturas clicaveis para excluir? -->
+
+        </div>
       </div>
 
     </main>
