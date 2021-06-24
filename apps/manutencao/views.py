@@ -87,6 +87,16 @@ def sobre(request):
 
             empresa.save()
         
+        else:
+            try:
+                carrosseis = Imagem_site.objects.filter(rodape=False)
+                contexto = {
+                    'carrosseis' : carrosseis,
+                }
+                return render(request, 'manutencao_templates/sobrenos.html', contexto)
+            except Imagem_site.DoesNotExist:
+                pass
+        
         return render(request, 'manutencao_templates/sobrenos.html')
     else:
         return redirect('login')

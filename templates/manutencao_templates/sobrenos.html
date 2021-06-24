@@ -54,8 +54,19 @@
 
           </form>
 
-          <!--#TODO arrumar parte para deletar... Deixar miniaturas clicaveis para excluir? -->
+          {% if carrosseis %}
+            <hr>
+            <h5 class="text-center">Clique na imagem para excluir</h5>
+            <br>
+            <div class="row">
+              {% for carrossel in carrosseis %}
+                <a href="{% url 'sobre' %}" class="col-sm-4"> <!--#TODO fazer link para excluir-->
+                  <img src="{{ carrossel.imagem.url }}" class="img-thumbnail" >
+                </a>
+              {% endfor %}
 
+            </div>  
+          {% endif %}
         </div>
       </div>
 
