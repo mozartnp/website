@@ -15,10 +15,6 @@ e-mail: teste@teste.com
 senha: 123
 Como modificar o superuser
 
-Perguntar na Alura o porque quando eu puxo os arquivos estaticos que estão em app, vem com a pasta pai, mas no projeto só vem a os arquivos
-
-PARA SOLUCIONAR O DADOS DA EMPRESA -- Travar pelo chamado da classe ao id 1, ou qual que eu quero. Toda vez que for salvar pelo save() usar o id travado já
-
 Melhorar validação de usuarios e afins
 
 Não indexar nos buscadores a parte de manutenção
