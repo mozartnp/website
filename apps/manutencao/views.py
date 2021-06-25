@@ -135,6 +135,20 @@ def imagenssite(request):
 
         return redirect('sobre')
 
+def deletando_imagem_site(request, id_imagem):
+    
+    #Verificação de usuario para poder usar ou não a tela de manutencao
+    if request.user.is_authenticated:
+        imagemsite = get_object_or_404(Imagem_site, pk=id_imagem) 
+        deleta = imagemsite.imagem.path
+        if os.path.exists(deleta):
+            os.remove(deleta)
+        imagemsite.delete()
+        return redirect('sobre')
+
+    else:
+        return redirect('login')
+
 def categoria(request):
     ''' Pagina para criar e acessar as categorias '''
 

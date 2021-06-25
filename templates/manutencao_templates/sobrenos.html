@@ -60,7 +60,7 @@
             <br>
             <div class="row">
               {% for carrossel in carrosseis %}
-                <a href="{% url 'sobre' %}" class="col-sm-4"> <!--#TODO fazer link para excluir-->
+                <a href="{% url 'deletando_imagem_site' carrossel.id %}" class="col-sm-4"> <!--#TODO fazer validação para excluir-->
                   <img src="{{ carrossel.imagem.url }}" class="img-thumbnail" >
                 </a>
               {% endfor %}

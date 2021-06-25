@@ -6,6 +6,7 @@ urlpatterns = [
     path('dados', views.dados, name='dados'),
     path('sobre', views.sobre, name='sobre'),
     path('imagenssite', views.imagenssite, name='imagenssite'),
+    path('deletandoimagemsite/<int:id_imagem>', views.deletando_imagem_site, name='deletando_imagem_site'),
     path('categoria', views.categoria, name='categoria'),
     path('editacategoria/<int:id_decategoria>', views.editacategoria, name='editacategoria'),
     path('deletandocategoria/<int:id_decategoria>', views.deletando_categoria, name='deletando_categoria'),
