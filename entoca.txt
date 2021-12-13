@@ -40,3 +40,6 @@ Refatorações a fazer:
 Vantagens:
     As imagens dos produtos estão armazenadas em /media/foto/(id da categoria)/(nome da imagem, que deve ser id da categoria + id do produto)
     Exibir 10 produtos ou categorias por pagina
+
+
+    a
