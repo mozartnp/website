@@ -16,9 +16,9 @@
                     <form action="{% url 'login' %}" method="POST" class="row g-3">
                         {% csrf_token %}
                         <h4>Seja Bem vindo</h4>
-                        <div class="col-12">
+                        <div class="col-12" data-id="usuariodiv">
                             <label>Usuário</label>
-                            <input type="text" name="usuario" class="form-control" placeholder="Usuário">
+                            <input type="text" data-id="usuarioinput" name="usuario" class="form-control" placeholder="Usuário">
                         </div>
                         <div class="col-12">
                             <label>Senha</label>

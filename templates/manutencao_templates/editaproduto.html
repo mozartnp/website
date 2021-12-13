@@ -35,7 +35,7 @@
                         </div>
                                     
                         <div class="col-sm-2">
-                          <button class="w-100 btn btn-outline-primary" type="submit">Alterar</button>
+                          <button class="w-100 btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#comfirmacaoDeAlteracao">Alterar</button>
                         </div> 
 
                         <div class="form-check col-sm-2 offset-sm-3">
@@ -50,32 +50,61 @@
                         </div>
                   
                         <div class="col-sm-2 offset-sm-3 " style="padding-top: 10px; padding-bottom: 10px">
-                            <button class="w-100 btn btn-outline-danger" type="button" data-bs-toggle="modal" data-bs-target="#comfirmacao">Excluir</button>
+                            <button class="w-100 btn btn-outline-danger" type="button" data-bs-toggle="modal" data-bs-target="#comfirmacaoDeExclusao">Excluir</button>
                         </div>   
                         {% include 'partials/_alertas.html' %}
+
+                        <!--Modal de confirmação para alteração-->
+                        <div class="modal fade" tabindex="-1" id="comfirmacaoDeAlteracao" aria-labelledby="modallabel" aria-hidden="true">
+                            <div class="modal-dialog">
+
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modallabel">Tem certeza que deseja alterar algo no produto {{ produto.nome_do_produto }}?</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button class="btn btn-outline-primary" type="submit">Alterar</button>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
                     </form>
 
-                    <img src="{{ produto.imagem.url }}" alt="Não achei" class="img-fluid">
+                    <img src="{{ produto.imagem.url }}" alt="Exemplo da imagem" class="img-fluid">
                     
                 </div>
 
-                <!--Modal de confirmação-->
-                <div class="modal fade" tabindex="-1" id="comfirmacao" aria-labelledby="modallabel" aria-hidden="true">
+                <!--Modal de confirmação para excluir produto-->
+                <div class="modal fade" tabindex="-1" id="comfirmacaoDeExclusao" aria-labelledby="modallabel" aria-hidden="true">
                     <div class="modal-dialog">
+
                         <div class="modal-content">
+
                             <div class="modal-header">
-                                <h6 class="modal-title" id="modallabel">Tem certeza que deseja excluir o produto: {{ produto.nome_do_produto }}?</h6>
+                                <h5 class="modal-title" id="modallabel">Tem certeza que deseja excluir o produto: {{ produto.nome_do_produto }}?</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
+
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <div class="col-sm-2 offset-sm-7" style="padding-top: 10px; padding-bottom: 10px">
                                     <a href="{% url 'deltando_produto' produto.id%}" class="btn btn-outline-danger" type="button">Excluir</a>
                                 </div> 
                             </div>
+
                         </div>
+
                     </div>
                 </div>
+
+                
 
             </div>
         </main>

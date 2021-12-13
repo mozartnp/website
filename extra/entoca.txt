@@ -20,7 +20,6 @@ Refatorações a fazer:
     Melhorar as tag, para ajudar no ranqueamento dos buscadores
     Fazer as validações de alterar e excluir itens(geral) ser para todos (django mensagem)
     Fazer um criadror de thumbnail ou fazer um função assicrona -- Para otimizar o uso do site
-    Dar um destaque para o produto que for capa, em manutencao/editaprodutos, Trocar a cor da borda? Por uma descrição? Preencher com cor?
     Arrumar o "mostrar senha"
     Arrumar o titulo das paginas
     Inserir alerta quando login não localizado
@@ -31,6 +30,12 @@ Refatorações a fazer:
     Limitar o numero de caracteres nos inputs em dados da empras, exemplo DDD pode caber mais de 3 digitos
     Inseriro rede social 
     Modularizar e organizar os estilos no site
+    Por um link para manutencao no index? tirar o link de pagina inicial 
+    Introduzir produtos direto da categoria
+    Bug no direcionamento da imagens
+    Deixar o logo em tamanho certo
+    Arrumar responsividade
+    Limitar tamanho do carrossel
 
 Vantagens:
     As imagens dos produtos estão armazenadas em /media/foto/(id da categoria)/(nome da imagem, que deve ser id da categoria + id do produto)
