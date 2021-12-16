@@ -4,6 +4,9 @@
 <!--Para carregar os arquivos estaticos na pagina.-->
 {% load static %}
 
+<!--Bloco que define o titulo na pagina-->
+{% block title %}{{empresa.nome_da_empresa}}{% endblock %}
+
 <!--Para indicar qual bloco será inserida no base.html-->
 {% block content %}
 
@@ -106,7 +109,7 @@
                     {%  if empresa.texto %}
                         {{ empresa.texto|linebreaks }}
                     {% else %}
-                        <p> SEM TEXTO DE REFERENCIA </p> 
+                        <p>AVISO: Sem Texto DE Referencia </p> 
                     {% endif %}
                 </h4>
 

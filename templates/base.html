@@ -11,7 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Titulo-->
-    <title>{{empresa.nome_da_empresa}}</title> <!--TODO arrumar para o titulo ser modular-->
+    <title>
+        {% block title %} {% endblock %}
+    </title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="{% static 'jquery/css/jquery.fancybox.min.css' %}">

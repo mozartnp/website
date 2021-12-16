@@ -4,6 +4,10 @@
 <!--Para carregar os arquivos estaticos na pagina.-->
 {% load static %}
 
+<!--Bloco que define o titulo na pagina-->
+{% block title %}Edição da categoria: {{ categoria.nome_da_categoria }}{% endblock %}
+
+
 <!--Para indicar qual bloco será inserida no base.html-->
 {% block content %}
 
