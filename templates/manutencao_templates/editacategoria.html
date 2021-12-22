@@ -7,7 +7,6 @@
 <!--Bloco que define o titulo na pagina-->
 {% block title %}Edição da categoria: {{ categoria.nome_da_categoria }}{% endblock %}
 
-
 <!--Para indicar qual bloco será inserida no base.html-->
 {% block content %}
 
@@ -22,11 +21,12 @@
             <div class="container" style="margin-bottom: 20px;">
                 <div class="col-lg-8 offset-lg-2">
 
-                    <h4 class="text-center">Edição da categoria: {{ categoria.nome_da_categoria }}</h4>
+                    <h4 class="text-center">Categoria: {{ categoria.nome_da_categoria }}</h4>
                     <hr>
                     
-                    <form class="row" action="{% url 'editacategoria' categoria.id%}" method="POST">
+                    <form class="row" action="{% url 'editacategoria' categoria.id %}" method="POST">
                         {% csrf_token %}
+                        <h5 class="text-center">Edição da categoria</h5>
                         
                         <div class="col-sm-12">
                             <label for="edicategoria" class="form-label">Nome da categoria</label>
@@ -40,6 +40,102 @@
                         </div> 
                         {% include 'partials/_alertas.html' %}
                     </form>
+
+                    <hr>
+                    
+                    <!--TODO criar model de confirmação-->
+                    <form class="row" action="{% url 'produto' categoria.id %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <h5 class="text-center">Criar um novo produto</h5>
+            
+                        <div class="col-sm-6">
+                            <label for="nomeproduto" class="form-label">Nome do produto</label>
+                            <input type="text" class="form-control" name="nomeproduto" placeholder="Nome do produto">
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="imagemproduto" class="form-label">Imagem do produto</label>
+                            <input type="file" class="form-control" id="imagemproduto" name="imagemproduto">                            
+                        </div>
+                                    
+                        <div style="padding-bottom: 20px;">
+                            <button class="w-100 btn btn-outline-primary" type="submit">Criar</button>
+                        </div>
+                        
+                        <!--TODO Mensagem repetindo-->
+                        {% include 'partials/_alertas.html' %}
+                    </form>
+
+                    <hr>
+                    <h5 class="text-center">Produtos na categoria</h5>
+
+                    {% if produtos %}
+                        {% for produto in produtos %}
+                            
+                            <div class="container border
+                            {% if produto.capa %}
+                                border-danger
+                            {% else %}
+                                border-success
+                            {% endif %}
+                            col-8 offset-lg-2" style="margin-bottom: 10px; ">
+                                <a href="{% url 'editaproduto' produto.id%}" class="row pb-3 text-decoration-none text-center">
+                                    <div>
+                                        <h6 style="color: black;">{{ produto.nome_do_produto }}</h6>
+                                        <h6 class="fw-light" style="color: black;">Clique aqui para criar, editar ou excluir o produto</h6>
+                                    </div>
+                                </a>
+                            </div>
+                            
+                        {% endfor %}
+                    {% else %}
+                        <h3 class ="text-center">Categoria sem produto cadastrado</h3>
+                    {% endif %}
+
+                     <!-- Paginação -->
+                    <section class="top-catagory-area section-padding-20-0 ">
+                        <div class="container ">
+
+                            {% if produtos.has_other_pages %}
+                            <ul class="pagination justify-content-end">
+
+                                {% if produtos.has_previous %}
+                                <li class="page-item">
+                                    <a href="?page= {{ produtos.previous_page_number }}" class="page-link">&laquo;</a>
+                                </li>
+                                {% else %}
+                                <li class="page-item disabled">
+                                    <a class="page-link">&laquo;</a>
+                                </li>
+                                {% endif %}
+                                
+                                {% for pagina in produtos.paginator.page_range %}
+                                {% if produtos.number == pagina %}                    
+                                <li class="page-item active">
+                                    <a class="page-link">{{ pagina }}</a>
+                                </li>
+                                {% else %}
+                                <li class="page-item">
+                                    <a href="?page={{ pagina }}" class="page-link">{{ pagina }}</a>
+                                </li>
+                                {% endif %}
+                                {% endfor %}
+
+                                {% if produtos.has_next %}
+                                <li class="page-item">
+                                    <a href="?page={{ produtos.next_page_number }}" class="page-link">&raquo;</a>
+                                </li>
+                                {% else %}
+                                <li class="page-item disabled">
+                                    <a class="page-link">&raquo;</a>
+                                </li>
+                                {% endif %}
+
+                            </ul>
+                            {% endif %}      
+
+                        </div>
+                    </section>
 
                 </div>
 

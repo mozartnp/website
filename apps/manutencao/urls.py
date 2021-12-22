@@ -10,8 +10,7 @@ urlpatterns = [
     path('categoria', views.categoria, name='categoria'),
     path('editacategoria/<int:id_decategoria>', views.editacategoria, name='editacategoria'),
     path('deletandocategoria/<int:id_decategoria>', views.deletando_categoria, name='deletando_categoria'),
-    path('produto', views.produto, name='produto'),
-    path('editaprodutos/<int:id_decategoria>', views.editaprodutos, name='editaprodutos'),
+    path('produto/<int:id_decategoria>', views.produto, name='produto'),
     path('editaproduto/<int:id_doproduto>', views.editaproduto, name='editaproduto'),    
     path('deletandoproduto/<int:id_doproduto>', views.deltando_produto, name='deltando_produto'),
 ]

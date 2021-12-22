@@ -25,4 +25,4 @@ def logout(request):
     ''' Pagina de logout do sistema '''
 
     auth.logout(request)
-    return redirect('index')
+    return redirect('home')

@@ -188,9 +188,15 @@ def editacategoria(request, id_decategoria):
     if request.user.is_authenticated:
 
         categoria = get_object_or_404(Categoria, pk=id_decategoria) 
+        produtos = Iten.objects.filter(categoria=categoria).order_by('nome_do_produto')
+
+        paginator = Paginator(produtos, 10)
+        page = request.GET.get('page')
+        produtos_por_pagina = paginator.get_page(page)
 
         categoria_a_exibir = {
-            'categoria' : categoria
+            'categoria' : categoria,
+            'produtos' : produtos_por_pagina,
         }
 
         if request.method == 'POST':
@@ -224,46 +230,15 @@ def deletando_categoria(request, id_decategoria):
     else:
         return redirect('login')
 
-def produto(request):
+def produto(request, id_decategoria):
     ''' Pagina para escolher a categoria que a pessoa quer criar/editar os produtos '''
 
     #Verificação de usuario para poder usar ou não a tela de manutencao
     if request.user.is_authenticated:
 
-        categorias = Categoria.objects.all().order_by('nome_da_categoria')
-
-        paginator = Paginator(categorias, 10)
-        page = request.GET.get('page')
-        categorias_por_pagina = paginator.get_page(page)
-
-        dados = {
-            'categorias' : categorias_por_pagina
-        }
-
-        return render(request, 'manutencao_templates/produto.html', dados)
-    else:
-        return redirect('login')
-
-def editaprodutos(request, id_decategoria):
-    ''' Pagina para criar produtos dentro de uma determinada categoria, ou abrir um produto para editar '''
-
-    #Verificação de usuario para poder usar ou não a tela de manutencao
-    if request.user.is_authenticated:
-
-        categoria = get_object_or_404(Categoria, pk=id_decategoria) 
-        produtos = Iten.objects.filter(categoria=categoria).order_by('nome_do_produto')
-
-        paginator = Paginator(produtos, 10)
-        page = request.GET.get('page')
-        produtos_por_pagina = paginator.get_page(page)
-
-        dados = {
-            'categoria' : categoria ,
-            'produtos' : produtos_por_pagina,
-        }
-
         if request.method == 'POST':
 
+            #TODO arrumar exeções
             categoria = Categoria.objects.get(id=id_decategoria)
             nomeproduto = request.POST['nomeproduto']
             imagemproduto = request.FILES['imagemproduto']
@@ -273,9 +248,8 @@ def editaprodutos(request, id_decategoria):
             
             messages.success(request, 'Produto cadastrado com sucesso.')
 
-            return redirect('editaprodutos', id_decategoria)
-              
-        return render(request, 'manutencao_templates/editaprodutos.html', dados)
+            return redirect('editacategoria', id_decategoria)
+
     else:
         return redirect('login')
 

@@ -2,8 +2,8 @@ from django.shortcuts import render
 from produtos.models import Categoria, Iten
 from manutencao.models import Empresa, Imagem_site
 
-def index(request):
-    ''' View do index (pagina inicial) '''
+def home(request):
+    ''' View do home (pagina inicial) '''
 
     categorias = Categoria.objects.all().order_by('nome_da_categoria')
     produtos = Iten.objects.all().order_by('nome_do_produto')
@@ -31,4 +31,4 @@ def index(request):
         'carrosseis'  : carrosseis,
     }
 
-    return render(request,'index.html', dados)
+    return render(request,'home.html', dados)
