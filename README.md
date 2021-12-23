@@ -14,4 +14,4 @@ pip install -r requirements.txt
 Quando todos os pacotes estiverem instalados, é necessario criar um superuser, para isso use o comando:
 python path/to/manage.py createsuperuser
 
-O site é dividido em duas partes, uma que consite no site proprimente dito onde é exposto os produtos. E a segunda parte é para manutenção das informções do site, para acessar a parte de manutenção é o http://dominio/manutencao , lembrando que o dominio é defindo por você.
+O site é dividido em duas partes, uma que consite no site proprimente dito onde é exposto os produtos. E a segunda parte é para manutenção das informções do site, para acessar a parte de manutenção é o //dominio/manutencao , lembrando que o dominio é defindo por você.
